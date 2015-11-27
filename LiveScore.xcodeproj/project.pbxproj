@@ -7,25 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0E80E31C05042B008FF50C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0E80E11C05042B008FF50C /* Main.storyboard */; };
+		3A6C83871C03AB1800DE011F /* GoalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6C83861C03AB1800DE011F /* GoalController.swift */; };
 		3A74343B1C0098E000EFFB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74343A1C0098E000EFFB2D /* AppDelegate.swift */; };
 		3A74343E1C0098E000EFFB2D /* LiveScore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A74343C1C0098E000EFFB2D /* LiveScore.xcdatamodeld */; };
 		3A7434401C0098E000EFFB2D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74343F1C0098E000EFFB2D /* MasterViewController.swift */; };
 		3A7434421C0098E000EFFB2D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7434411C0098E000EFFB2D /* DetailViewController.swift */; };
-		3A7434451C0098E000EFFB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7434431C0098E000EFFB2D /* Main.storyboard */; };
 		3A7434471C0098E000EFFB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A7434461C0098E000EFFB2D /* Assets.xcassets */; };
-		3A74344A1C0098E000EFFB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7434481C0098E000EFFB2D /* LaunchScreen.storyboard */; };
+		3A7434521C00995500EFFB2D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7434511C00995500EFFB2D /* Default-568h@2x.png */; };
+		3A7434561C0099BA00EFFB2D /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7434531C0099BA00EFFB2D /* Match.swift */; };
+		3A7434571C0099BA00EFFB2D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7434541C0099BA00EFFB2D /* Player.swift */; };
+		3A7434581C0099BA00EFFB2D /* Squad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7434551C0099BA00EFFB2D /* Squad.swift */; };
+		3A74345A1C00E52C00EFFB2D /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7434591C00E52C00EFFB2D /* Goal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0E80E21C05042B008FF50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3A6C83861C03AB1800DE011F /* GoalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalController.swift; sourceTree = "<group>"; };
 		3A7434371C0098E000EFFB2D /* LiveScore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveScore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A74343A1C0098E000EFFB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A74343D1C0098E000EFFB2D /* LiveScore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LiveScore.xcdatamodel; sourceTree = "<group>"; };
 		3A74343F1C0098E000EFFB2D /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		3A7434411C0098E000EFFB2D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		3A7434441C0098E000EFFB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A7434461C0098E000EFFB2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3A7434491C0098E000EFFB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A74344B1C0098E000EFFB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A7434511C00995500EFFB2D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3A7434531C0099BA00EFFB2D /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		3A7434541C0099BA00EFFB2D /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		3A7434551C0099BA00EFFB2D /* Squad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Squad.swift; sourceTree = "<group>"; };
+		3A7434591C00E52C00EFFB2D /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +52,7 @@
 		3A74342E1C0098E000EFFB2D = {
 			isa = PBXGroup;
 			children = (
+				3A7434511C00995500EFFB2D /* Default-568h@2x.png */,
 				3A7434391C0098E000EFFB2D /* LiveScore */,
 				3A7434381C0098E000EFFB2D /* Products */,
 			);
@@ -58,14 +69,18 @@
 		3A7434391C0098E000EFFB2D /* LiveScore */ = {
 			isa = PBXGroup;
 			children = (
+				3A0E80E11C05042B008FF50C /* Main.storyboard */,
+				3A6C83861C03AB1800DE011F /* GoalController.swift */,
+				3A7434531C0099BA00EFFB2D /* Match.swift */,
+				3A7434541C0099BA00EFFB2D /* Player.swift */,
+				3A7434551C0099BA00EFFB2D /* Squad.swift */,
 				3A74343A1C0098E000EFFB2D /* AppDelegate.swift */,
 				3A74343F1C0098E000EFFB2D /* MasterViewController.swift */,
 				3A7434411C0098E000EFFB2D /* DetailViewController.swift */,
-				3A7434431C0098E000EFFB2D /* Main.storyboard */,
 				3A7434461C0098E000EFFB2D /* Assets.xcassets */,
-				3A7434481C0098E000EFFB2D /* LaunchScreen.storyboard */,
 				3A74344B1C0098E000EFFB2D /* Info.plist */,
 				3A74343C1C0098E000EFFB2D /* LiveScore.xcdatamodeld */,
+				3A7434591C00E52C00EFFB2D /* Goal.swift */,
 			);
 			path = LiveScore;
 			sourceTree = "<group>";
@@ -102,6 +117,7 @@
 				TargetAttributes = {
 					3A7434361C0098E000EFFB2D = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = A43J6J53E9;
 					};
 				};
 			};
@@ -128,9 +144,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A74344A1C0098E000EFFB2D /* LaunchScreen.storyboard in Resources */,
+				3A0E80E31C05042B008FF50C /* Main.storyboard in Resources */,
 				3A7434471C0098E000EFFB2D /* Assets.xcassets in Resources */,
-				3A7434451C0098E000EFFB2D /* Main.storyboard in Resources */,
+				3A7434521C00995500EFFB2D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +157,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A74345A1C00E52C00EFFB2D /* Goal.swift in Sources */,
 				3A74343E1C0098E000EFFB2D /* LiveScore.xcdatamodeld in Sources */,
+				3A6C83871C03AB1800DE011F /* GoalController.swift in Sources */,
 				3A74343B1C0098E000EFFB2D /* AppDelegate.swift in Sources */,
 				3A7434401C0098E000EFFB2D /* MasterViewController.swift in Sources */,
+				3A7434561C0099BA00EFFB2D /* Match.swift in Sources */,
+				3A7434571C0099BA00EFFB2D /* Player.swift in Sources */,
+				3A7434581C0099BA00EFFB2D /* Squad.swift in Sources */,
 				3A7434421C0098E000EFFB2D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,20 +172,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3A7434431C0098E000EFFB2D /* Main.storyboard */ = {
+		3A0E80E11C05042B008FF50C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3A7434441C0098E000EFFB2D /* Base */,
+				3A0E80E21C05042B008FF50C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3A7434481C0098E000EFFB2D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3A7434491C0098E000EFFB2D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -255,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LiveScore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mamersfo.LiveScore;
@@ -266,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LiveScore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mamersfo.LiveScore;
@@ -292,6 +307,7 @@
 				3A7434501C0098E000EFFB2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

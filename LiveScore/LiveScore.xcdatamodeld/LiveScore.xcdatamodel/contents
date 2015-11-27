@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Goal" representedClassName="Goal" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="half" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="seconds" optional="YES" attributeType="Integer 64" syncable="YES"/>
+        <relationship name="assist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" syncable="YES"/>
+        <relationship name="match" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="goals" inverseEntity="Match" syncable="YES"/>
+        <relationship name="scorer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" syncable="YES"/>
+        <relationship name="squad" maxCount="1" deletionRule="Nullify" destinationEntity="Squad" syncable="YES"/>
+    </entity>
+    <entity name="Match" representedClassName="Match" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="away" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Squad" syncable="YES"/>
+        <relationship name="goals" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Goal" inverseName="match" inverseEntity="Goal" syncable="YES"/>
+        <relationship name="home" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Squad" syncable="YES"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" syncable="YES"/>
+        <relationship name="goals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" syncable="YES"/>
+    </entity>
+    <entity name="Squad" representedClassName="Squad" syncable="YES">
+        <attribute name="club" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="team" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Goal" positionX="-45" positionY="9" width="128" height="150"/>
+        <element name="Match" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Player" positionX="-36" positionY="18" width="128" height="90"/>
+        <element name="Squad" positionX="-54" positionY="9" width="128" height="90"/>
     </elements>
 </model>

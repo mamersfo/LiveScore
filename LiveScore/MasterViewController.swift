@@ -14,20 +14,55 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
+    func loadData() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let moc = self.managedObjectContext!
+        
+        let p0 = Player.create(moc, name: "N.N.")
+        let p1 = Player.create(moc, name: "Amine")
+        let p2 = Player.create(moc, name: "Dieuwe")
+        Player.create(moc, name: "Fadi")
+        Player.create(moc, name: "Lenny")
+        Player.create(moc, name: "Luc")
+        Player.create(moc, name: "Quincy")
+        Player.create(moc, name: "Stijn")
+        Player.create(moc, name: "Vic")
+        Player.create(moc, name: "Vito")
+        
+        let bld = Squad.create(moc, code: "BLD", club: "Blijdorp", team: "E3")
+        let vic = Squad.create(moc, code: "VIC", club: "Victoria'04", team: "E2")
+        let ket = Squad.create(moc, code: "KSP", club: "Kethel Spaland", team: "E2")
+        let cwo = Squad.create(moc, code: "CWO", club: "CWO", team: "E1")
+        let exc = Squad.create(moc, code: "EXC", club: "Excelsior'20", team: "E3")
+        //        let her = Squad.create(moc, club: "Hermes DVS", team: "E1")
+        //        let vfc = Squad.create(moc, club: "VFC", team: "E5")
+        //        let glz = Squad.create(moc, club: "GLZ Delfshaven", team: "E1")
+        //        let dbs = Squad.create(moc, club: "De Betrokken Spartaan", team: "E3")
+        //        let svv = Squad.create(moc, club: "SVV", team: "E2")
+
+        Match.create(moc, year: 2015, month: 11, day: 28, hour: 10, minute: 15, home: vic, away: bld)
+        Match.create(moc, year: 2015, month: 12, day: 28, hour: 9, minute: 10, home: exc, away: bld)
+        Match.create(moc, year: 2015, month: 12, day: 19, hour: 10, minute: 0, home: ket, away: bld)
+        Match.create(moc, year: 2016, month: 1, day: 16, hour: 9, minute: 0, home: cwo, away: bld)
+        Match.create(moc, year: 2016, month: 1, day: 23, hour: 10, minute: 45, home: bld, away: ket)
+        
+        appDelegate.saveContext()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        loadData()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
@@ -35,27 +70,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func insertNewObject(sender: AnyObject) {
-        let context = self.fetchedResultsController.managedObjectContext
-        let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
-             
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        newManagedObject.setValue(NSDate(), forKey: "timeStamp")
-             
-        // Save the context.
-        do {
-            try context.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //print("Unresolved error \(error), \(error.userInfo)")
-            abort()
-        }
     }
 
     // MARK: - Segues
@@ -90,7 +104,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
 
@@ -102,17 +115,30 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //print("Unresolved error \(error), \(error.userInfo)")
                 abort()
             }
         }
     }
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-        cell.textLabel!.text = object.valueForKey("timeStamp")!.description
+        if let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Match {
+            cell.textLabel!.text = object.description
+        }
+    }
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Match {
+            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                if (appDelegate.timerStart != nil) {
+                    let match = appDelegate.match!
+                    if object != match {
+                        return nil
+                    }
+                }
+            }
+        }
+        
+        return indexPath
     }
 
     // MARK: - Fetched results controller
@@ -123,20 +149,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         
         let fetchRequest = NSFetchRequest()
-        // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Match", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
+        fetchRequest.returnsObjectsAsFaults = false
         
-        // Set the batch size to a suitable number.
-        fetchRequest.fetchBatchSize = 20
-        
-        // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
-        
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
@@ -144,14 +163,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         do {
             try _fetchedResultsController!.performFetch()
         } catch {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             //print("Unresolved error \(error), \(error.userInfo)")
              abort()
         }
         
         return _fetchedResultsController!
     }    
+    
     var _fetchedResultsController: NSFetchedResultsController? = nil
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -186,15 +203,5 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
-
-    /*
-     // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-     
-     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-         // In the simplest, most efficient, case, reload the table view.
-         self.tableView.reloadData()
-     }
-     */
-
 }
 
