@@ -19,9 +19,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let moc = self.managedObjectContext!
         
-        let p0 = Player.create(moc, name: "N.N.")
-        let p1 = Player.create(moc, name: "Amine")
-        let p2 = Player.create(moc, name: "Dieuwe")
+        Player.create(moc, name: "N.N.")
+        Player.create(moc, name: "Amine")
+        Player.create(moc, name: "Dieuwe")
         Player.create(moc, name: "Fadi")
         Player.create(moc, name: "Lenny")
         Player.create(moc, name: "Luc")
@@ -53,7 +53,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        // self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         if let split = self.splitViewController {
             let controllers = split.viewControllers

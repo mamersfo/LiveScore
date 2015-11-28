@@ -42,11 +42,94 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeA-5x-TUY">
+                                <rect key="frame" x="20" y="550" width="180" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Blijdorp"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="JDI-NG-DFk" kind="showDetail" identifier="Blijdorp Goal" id="cmD-jj-52C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-BX-DrE">
+                                <rect key="frame" x="210" y="550" width="180" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Opponent"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="JDI-NG-DFk" kind="showDetail" identifier="Opponent Goal" id="5Rb-yY-J92"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wE0-lv-HsC">
+                                <rect key="frame" x="400" y="550" width="180" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Edit"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="modify:" destination="JEX-9P-axG" eventType="touchUpInside" id="BpQ-FG-9I5"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pbV-nw-w2G">
+                                <rect key="frame" x="305" y="320" width="275" height="222"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="SkB-8i-58w">
+                                <rect key="frame" x="20" y="320" width="275" height="222"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8oc-2D-mvB">
+                                <rect key="frame" x="20" y="84" width="560" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="1st half"/>
+                                    <segment title="2nd half"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4e-Lk-N46">
+                                <rect key="frame" x="20" y="230" width="560" height="86"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zn5-Lu-cvR">
                                 <rect key="frame" x="20" y="134" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="0:00"/>
+                                <state key="normal" title="Start"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                         <integer key="value" value="1"/>
@@ -60,78 +143,51 @@
                                     <action selector="startStop:" destination="JEX-9P-axG" eventType="touchUpInside" id="ZWM-2B-eIx"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pbV-nw-w2G">
-                                <rect key="frame" x="305" y="320" width="275" height="260"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="SkB-8i-58w">
-                                <rect key="frame" x="20" y="320" width="275" height="260"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8oc-2D-mvB">
-                                <rect key="frame" x="20" y="84" width="560" height="29"/>
-                                <animations/>
-                                <segments>
-                                    <segment title="1st half"/>
-                                    <segment title="2nd half"/>
-                                </segments>
-                                <connections>
-                                    <action selector="end:" destination="JEX-9P-axG" eventType="valueChanged" id="Az2-9d-6iK"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4e-Lk-N46">
-                                <rect key="frame" x="20" y="230" width="560" height="86"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wE0-lv-HsC" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="2Y7-m1-Rqo"/>
                             <constraint firstItem="zn5-Lu-cvR" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="8ZK-1j-zed"/>
                             <constraint firstItem="8oc-2D-mvB" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="20" id="APl-PL-LBh"/>
-                            <constraint firstItem="pbV-nw-w2G" firstAttribute="leading" secondItem="SkB-8i-58w" secondAttribute="trailing" constant="10" id="Hm4-ex-Xwn"/>
-                            <constraint firstItem="pbV-nw-w2G" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="106" id="La2-aY-rgP"/>
-                            <constraint firstItem="pbV-nw-w2G" firstAttribute="width" secondItem="SkB-8i-58w" secondAttribute="width" id="NwK-8J-BLy"/>
+                            <constraint firstItem="pbV-nw-w2G" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="F10-Lf-IdA"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="HWW-BX-DrE" secondAttribute="bottom" constant="20" id="Fa4-9d-H1R"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="CeA-5x-TUY" secondAttribute="bottom" constant="20" id="Hxc-Nc-1SZ"/>
+                            <constraint firstItem="wE0-lv-HsC" firstAttribute="leading" secondItem="HWW-BX-DrE" secondAttribute="trailing" constant="10" id="Jw6-Ve-jng"/>
+                            <constraint firstItem="HWW-BX-DrE" firstAttribute="width" secondItem="CeA-5x-TUY" secondAttribute="width" id="MvO-SA-NlV"/>
+                            <constraint firstItem="wE0-lv-HsC" firstAttribute="top" secondItem="pbV-nw-w2G" secondAttribute="bottom" constant="8" id="NgU-MP-qfm"/>
                             <constraint firstItem="V4e-Lk-N46" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="QE4-PB-MUf"/>
                             <constraint firstItem="8oc-2D-mvB" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="REP-7d-oA2"/>
-                            <constraint firstItem="SkB-8i-58w" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="UnO-5l-Meu"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="SkB-8i-58w" secondAttribute="bottom" id="Wri-4G-6UL"/>
-                            <constraint firstItem="pbV-nw-w2G" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="Z7m-Ua-VMW"/>
-                            <constraint firstItem="SkB-8i-58w" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="106" id="aO9-bj-1dq"/>
+                            <constraint firstItem="HWW-BX-DrE" firstAttribute="leading" secondItem="CeA-5x-TUY" secondAttribute="trailing" constant="10" id="YFO-rB-o80"/>
+                            <constraint firstItem="pbV-nw-w2G" firstAttribute="leading" secondItem="SkB-8i-58w" secondAttribute="trailing" constant="10" id="ZHu-7K-23V"/>
                             <constraint firstItem="V4e-Lk-N46" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="cIM-ga-fG6"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="cYy-bn-py8"/>
-                            <constraint firstItem="pbV-nw-w2G" firstAttribute="leading" secondItem="SkB-8i-58w" secondAttribute="trailing" constant="10" id="gGK-ma-lbN"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="wE0-lv-HsC" secondAttribute="bottom" constant="20" id="ckG-43-eAj"/>
+                            <constraint firstItem="pbV-nw-w2G" firstAttribute="top" secondItem="V4e-Lk-N46" secondAttribute="bottom" constant="4" id="dnN-XL-561"/>
+                            <constraint firstItem="HWW-BX-DrE" firstAttribute="top" secondItem="SkB-8i-58w" secondAttribute="bottom" constant="8" id="f2w-c7-sAf"/>
+                            <constraint firstItem="pbV-nw-w2G" firstAttribute="leading" secondItem="SkB-8i-58w" secondAttribute="trailing" constant="10" id="fMy-8y-IeJ"/>
+                            <constraint firstItem="pbV-nw-w2G" firstAttribute="width" secondItem="SkB-8i-58w" secondAttribute="width" id="fuI-tc-UqP"/>
+                            <constraint firstItem="SkB-8i-58w" firstAttribute="top" secondItem="V4e-Lk-N46" secondAttribute="bottom" constant="4" id="gb1-BC-l6l"/>
                             <constraint firstItem="zn5-Lu-cvR" firstAttribute="top" secondItem="8oc-2D-mvB" secondAttribute="bottom" constant="22" id="hvA-cZ-Jln"/>
+                            <constraint firstItem="wE0-lv-HsC" firstAttribute="width" secondItem="CeA-5x-TUY" secondAttribute="width" id="hvO-CR-0Ae"/>
                             <constraint firstItem="8oc-2D-mvB" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="i1C-Mb-Z0m"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="pbV-nw-w2G" secondAttribute="bottom" id="lBN-Rb-t33"/>
                             <constraint firstItem="zn5-Lu-cvR" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="nlZ-VW-zfG"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="o8I-LG-F5z"/>
                             <constraint firstItem="V4e-Lk-N46" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="16" id="pBy-2q-Bec"/>
+                            <constraint firstItem="SkB-8i-58w" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="qzC-WI-AfY"/>
+                            <constraint firstItem="wE0-lv-HsC" firstAttribute="leading" secondItem="HWW-BX-DrE" secondAttribute="trailing" constant="10" id="uGO-dX-bdh"/>
+                            <constraint firstItem="CeA-5x-TUY" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="zN2-g8-Emv"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Match" id="mOI-FS-AaM">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Goal" id="Wfl-lt-8Mg">
-                            <connections>
-                                <segue destination="JDI-NG-DFk" kind="showDetail" id="ir0-LV-BM7"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Match" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="awayScores" destination="pbV-nw-w2G" id="pxM-Pk-T2C"/>
+                        <outlet property="blijdorpButton" destination="CeA-5x-TUY" id="UC6-Kj-0nL"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
-                        <outlet property="goalButton" destination="Wfl-lt-8Mg" id="Hkt-7r-2XR"/>
                         <outlet property="halfControl" destination="8oc-2D-mvB" id="YuD-3K-t34"/>
                         <outlet property="homeScores" destination="SkB-8i-58w" id="v7x-jD-zYL"/>
+                        <outlet property="opponentButton" destination="HWW-BX-DrE" id="xyS-93-bMv"/>
                         <outlet property="scoreLabel" destination="V4e-Lk-N46" id="7fj-sb-2Ku"/>
                         <outlet property="startStopButton" destination="zn5-Lu-cvR" id="paD-C9-Qki"/>
                     </connections>
@@ -261,6 +317,40 @@
             </objects>
             <point key="canvasLocation" x="709" y="851"/>
         </scene>
+        <!--ScoreController-->
+        <scene sceneID="Qmz-Ku-fS5">
+            <objects>
+                <tableViewController storyboardIdentifier="ScoreController" title="ScoreController" id="dgO-l6-mQd" customClass="ScoreController" customModule="LiveScore" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xhO-hH-Yw3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="5Q8-hg-2f8">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Q8-hg-2f8" id="guW-xo-GaL">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dgO-l6-mQd" id="e7I-Wf-KwE"/>
+                            <outlet property="delegate" destination="dgO-l6-mQd" id="5Su-0I-OBl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Score" id="Eal-fg-Vbl">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="npe-VU-WSK"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Dw-rJ-RAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1431" y="129"/>
+        </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
@@ -359,6 +449,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="6S0-TO-JiA"/>
+        <segue reference="5Rb-yY-J92"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,7 +14,7 @@ extension Goal {
     @NSManaged var assist: Player?
     @NSManaged var comment: String?
 
-    class func create(moc: NSManagedObjectContext, match: Match, half: Int, seconds: Int, squad: Squad, scorer: Player?, assist: Player?, comment: String?) -> Goal {
+    class func create(moc: NSManagedObjectContext, match: Match, half: Int, seconds: Int, squad: Squad?, scorer: Player?) -> Goal {
         let instance = NSEntityDescription.insertNewObjectForEntityForName(
             "Goal", inManagedObjectContext: moc) as! Goal
         instance.match = match
@@ -22,17 +22,26 @@ extension Goal {
         instance.seconds = seconds
         instance.squad = squad
         instance.scorer = scorer
-        instance.assist = assist
-        instance.comment = comment
         return instance
     }
     
     override var description: String {
-        return String(format: "match: %s, half: %d, seconds: %d",
-            match.description,
-            half,
-            seconds
-        )
+        var desc = String(format: "%d\"", self.minutes)
+        
+        if let squad = self.squad {
+            if squad.isBlijdorp() {
+                if let scorer = self.scorer {
+                    desc += String(format: " %@", scorer.name)
+                }
+                if let assist = self.assist {
+                    desc += String(format: ", assist %@", assist.name)
+                }
+            } else {
+                desc += String(format: " %@", squad.club)
+            }
+        }
+        
+        return desc
     }
     
     class func findByMatch(moc: NSManagedObjectContext, match: Match) -> [Goal]? {

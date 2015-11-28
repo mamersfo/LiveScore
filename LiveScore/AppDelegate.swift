@@ -153,5 +153,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         UIGraphicsEndImageContext()
         
         return image
-    }    
+    }    }
 }

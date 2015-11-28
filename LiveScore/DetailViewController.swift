@@ -1,6 +1,7 @@
 import UIKit
 import CoreData
 import Social
+import AudioToolbox
 
 class DetailViewController: UIViewController {
 
@@ -10,7 +11,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var homeScores: UITextView!
     @IBOutlet weak var awayScores: UITextView!
-    @IBOutlet weak var goalButton: UIBarButtonItem!
+    
+    @IBOutlet weak var blijdorpButton: UIButton!
+    @IBOutlet weak var opponentButton: UIButton!
     
     var timer: NSTimer?
 
@@ -37,8 +40,7 @@ class DetailViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
             
-            if let started = appDelegate.timerStart {
-                print("started: \(started)")
+            if appDelegate.timerStart != nil {
                 self.startTimer()
             }
             
@@ -73,10 +75,13 @@ class DetailViewController: UIViewController {
         if let started = (UIApplication.sharedApplication().delegate as? AppDelegate)!.timerStart {
             if let button = self.startStopButton {
                 let total = abs(started.timeIntervalSinceNow)
-                let minutes = Int(floor(total / 60.0))
-                let seconds = Int(total % 60.0)
-                let title = String(format: "%d:%02d", minutes, seconds)
+                let minutes = Int(total / 60.0)
+                let title = String(format: "%d\"", minutes)
                 button.setTitle(title, forState: .Normal)
+                
+                if ( minutes == 8 || minutes == 16 ) {
+                    AudioServicesPlaySystemSound(1304)
+                }
             }
         }
     }
@@ -98,27 +103,33 @@ class DetailViewController: UIViewController {
     }
     
     func startTimer() {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "tick", userInfo: nil, repeats: true)
+        
+        self.startStopButton.setTitle("0\"", forState:  .Normal)
         self.startStopButton.backgroundColor = self.view.tintColor
         self.startStopButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.halfControl.enabled = false
-        self.goalButton.enabled = true
+        self.blijdorpButton.enabled = true
+        self.opponentButton.enabled = true
     }
     
     func stopTimer() {
         if let someTimer = self.timer {
             someTimer.invalidate()
         }
-        self.startStopButton.setTitle("0:00", forState: .Normal)
+        self.startStopButton.setTitle("Start", forState: .Normal)
         self.startStopButton.backgroundColor = UIColor.whiteColor()
         self.startStopButton.setTitleColor(self.view.tintColor, forState: .Normal)
         self.halfControl.enabled = true
-        self.goalButton.enabled = false
+        self.blijdorpButton.enabled = false
+        self.opponentButton.enabled = false
     }
         
     @IBAction func startStop( sender: UIButton ) {
+        
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-            if ( sender.titleLabel!.text! == "0:00" ) {
+            
+            if ( sender.titleLabel!.text! == "Start" ) {
                 if let match = self.detailItem as? Match {
                     appDelegate.match = match
                     appDelegate.half = self.halfControl.selectedSegmentIndex + 1
@@ -127,6 +138,8 @@ class DetailViewController: UIViewController {
 
                     if ( appDelegate.half == 1 ) {
                         self.tweet(String(format: "De wedstrijd %@ is begonnen! %@", match.description, match.hashTag!), image: nil)
+                    } else if ( appDelegate.half == 2 ) {
+                        self.tweet(String(format: "De tweede helft is begonnen %@", match.description, match.hashTag!), image: nil)
                     }
                 }
             } else {
@@ -153,6 +166,13 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBAction func modify( sender: UIButton ) {
+        if let match = self.detailItem as? Match {
+            let scoreController = ScoreController.forMatch(match)
+            self.navigationController?.pushViewController(scoreController, animated: true)
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let match = self.detailItem as? Match {
             if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
@@ -160,7 +180,16 @@ class DetailViewController: UIViewController {
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! GoalController
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                     controller.navigationItem.leftItemsSupplementBackButton = true
-                    controller.goal = Goal.create(appDelegate.managedObjectContext, match: match, half: appDelegate.half, seconds: Int(abs(started.timeIntervalSinceNow)), squad: match.home, scorer: Player.findByName(appDelegate.managedObjectContext, name: "N.N."), assist: nil, comment: nil)
+                    
+                    var squad: Squad? {
+                        if segue.identifier == "Blijdorp Goal" {
+                            return match.blijdorp
+                        } else {
+                            return match.opponent
+                        }
+                    }
+                    
+                    controller.goal = Goal.create(appDelegate.managedObjectContext, match: match, half: appDelegate.half, seconds: Int(abs(started.timeIntervalSinceNow)), squad: squad, scorer: Player.findByName(appDelegate.managedObjectContext, name: "N.N."))
                 }
             }
         }
