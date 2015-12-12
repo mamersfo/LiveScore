@@ -88,7 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         
         if let preloadURL = NSBundle.mainBundle().URLForResource("LiveScoreData", withExtension: "sqlite") {
-            
             do {
                 try fm.copyItemAtURL(preloadURL, toURL: url)
             } catch {
@@ -97,8 +96,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         
         do {
+            var options = [NSObject: AnyObject]()
+            options[NSSQLitePragmasOption] = ["journal_mode": "DELETE"]
+            options[NSMigratePersistentStoresAutomaticallyOption] = true
+            options[NSInferMappingModelAutomaticallyOption] = true
+            
             try coordinator!.addPersistentStoreWithType(
-                NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+                NSSQLiteStoreType, configuration: nil, URL: url, options: options)
         } catch var error1 as NSError {
             error = error1
             coordinator = nil
@@ -153,5 +157,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         UIGraphicsEndImageContext()
         
         return image
-    }    }
+    }
 }

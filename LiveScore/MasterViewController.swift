@@ -14,53 +14,59 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
-    func loadData() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let moc = self.managedObjectContext!
-        
-        Player.create(moc, name: "N.N.")
-        Player.create(moc, name: "Amine")
-        Player.create(moc, name: "Dieuwe")
-        Player.create(moc, name: "Fadi")
-        Player.create(moc, name: "Lenny")
-        Player.create(moc, name: "Luc")
-        Player.create(moc, name: "Quincy")
-        Player.create(moc, name: "Stijn")
-        Player.create(moc, name: "Vic")
-        Player.create(moc, name: "Vito")
-        
-        let bld = Squad.create(moc, code: "BLD", club: "Blijdorp", team: "E3")
-        let vic = Squad.create(moc, code: "VIC", club: "Victoria'04", team: "E2")
-        let ket = Squad.create(moc, code: "KSP", club: "Kethel Spaland", team: "E2")
-        let cwo = Squad.create(moc, code: "CWO", club: "CWO", team: "E1")
-        let exc = Squad.create(moc, code: "EXC", club: "Excelsior'20", team: "E3")
-        //        let her = Squad.create(moc, club: "Hermes DVS", team: "E1")
-        //        let vfc = Squad.create(moc, club: "VFC", team: "E5")
-        //        let glz = Squad.create(moc, club: "GLZ Delfshaven", team: "E1")
-        //        let dbs = Squad.create(moc, club: "De Betrokken Spartaan", team: "E3")
-        //        let svv = Squad.create(moc, club: "SVV", team: "E2")
-
-        Match.create(moc, year: 2015, month: 11, day: 28, hour: 10, minute: 15, home: vic, away: bld)
-        Match.create(moc, year: 2015, month: 12, day: 28, hour: 9, minute: 10, home: exc, away: bld)
-        Match.create(moc, year: 2015, month: 12, day: 19, hour: 10, minute: 0, home: ket, away: bld)
-        Match.create(moc, year: 2016, month: 1, day: 16, hour: 9, minute: 0, home: cwo, away: bld)
-        Match.create(moc, year: 2016, month: 1, day: 23, hour: 10, minute: 45, home: bld, away: ket)
-        
-        appDelegate.saveContext()
-    }
+//    func loadData() {
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        let moc = self.managedObjectContext!
+//        
+//        let be3 = Squad.create(moc, code: "BLD", club: "Blijdorp", team: "E3")
+//        let be5 = Squad.create(moc, code: "BE5", club: "Blijdorp", team: "E5")
+//
+//        Player.create(moc, name: "N.N.", squad: nil)
+//        
+//        Player.create(moc, name: "Amine", squad: be3)
+//        Player.create(moc, name: "Dieuwe", squad: be3)
+//        Player.create(moc, name: "Fadi", squad: be3)
+//        Player.create(moc, name: "Lenny", squad: be3)
+//        Player.create(moc, name: "Luc", squad: be3)
+//        Player.create(moc, name: "Quincy", squad: be3)
+//        Player.create(moc, name: "Stijn", squad: be3)
+//        Player.create(moc, name: "Vic", squad: be3)
+//        Player.create(moc, name: "Vito", squad: be3)
+//        
+//        Player.create(moc, name: "Ilias", squad: be5)
+//        Player.create(moc, name: "Tristan", squad: be5)
+//        Player.create(moc, name: "Ziggy", squad: be5)
+//        
+//        // let vic = Squad.create(moc, code: "VIC", club: "Victoria'04", team: "E2")
+//        let ket = Squad.create(moc, code: "KSP", club: "Kethel Spaland", team: "E2")
+//        let cwo = Squad.create(moc, code: "CWO", club: "CWO", team: "E1")
+//        let exc = Squad.create(moc, code: "EXC", club: "Excelsior'20", team: "E3")
+//        //        let her = Squad.create(moc, club: "Hermes DVS", team: "E1")
+//        //        let vfc = Squad.create(moc, club: "VFC", team: "E5")
+//        //        let glz = Squad.create(moc, club: "GLZ Delfshaven", team: "E1")
+//        //        let dbs = Squad.create(moc, club: "De Betrokken Spartaan", team: "E3")
+//        //        let svv = Squad.create(moc, club: "SVV", team: "E2")
+//
+//        Match.create(moc, year: 2015, month: 12, day: 12, hour: 9, minute: 10, home: exc, away: be3)
+//        Match.create(moc, year: 2015, month: 12, day: 19, hour: 10, minute: 0, home: ket, away: be3)
+//        Match.create(moc, year: 2016, month: 1, day: 16, hour: 9, minute: 0, home: cwo, away: be3)
+//        Match.create(moc, year: 2016, month: 1, day: 23, hour: 10, minute: 45, home: be3, away: ket)
+//        
+//        appDelegate.saveContext()
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        loadData()
+        // loadData()
     }
     
     override func viewWillAppear(animated: Bool) {

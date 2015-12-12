@@ -46,7 +46,7 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         if let g = self.goal {
             if let squad = g.squad {
-                self.squadField.text = squad.club
+                self.squadField.text = squad.club.name
             }
             
             if let scorer = g.scorer {
@@ -79,7 +79,7 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch( pickerView ) {
         case squadPicker:
-            return squads![row].club
+            return squads![row].club.name
         case scorerPicker:
             return players![row].name
         case assistPicker:
@@ -93,7 +93,7 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         switch( pickerView ) {
         case squadPicker:
             goal!.squad = squads![row]
-            self.squadField.text = goal!.squad!.club
+            self.squadField.text = goal!.squad!.club.name
             self.squadField.resignFirstResponder()
         case scorerPicker:
             goal!.scorer = players![row]
@@ -110,39 +110,41 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func tweetText() -> String? {
         if let g = self.goal {
-            var tweet = String(format: "%d\"", g.minutes)
-            
-            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                if let goals = Goal.findByMatch(appDelegate.managedObjectContext, match: g.match) {
-                    let homeGoals = goals.filter{ $0.squad == g.match.home }
-                    let awayGoals = goals.filter{ $0.squad == g.match.away }
-                    tweet += String(format: " %d-%d", homeGoals.count, awayGoals.count)
-                }
-            }
-            
-            if let squad = g.squad {
-                if squad.isBlijdorp() {
-                    if let scorer = g.scorer {
-                        tweet += String(format: ", doelpunt %@", scorer.name)
-                    }
-                    
-                    if let assist = g.assist {
-                        tweet += String(format: ", assist %@", assist.name)
-                    }
-                } else {
-                    tweet += String(format: " doelpunt %@", squad.club)
-                }
-            }
-            
-            if let comment = g.comment {
-                tweet += String(format: " (%@)", comment)
-            }
-            
             if let hashTag = g.match.hashTag {
-                tweet += String(format: " %@", hashTag)
-            }
+                var tweet = String(format: " %@ %d'", hashTag, g.minutes)
             
-            return tweet
+                if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                    if let goals = Goal.findByMatch(appDelegate.managedObjectContext, match: g.match) {
+                        let homeGoals = goals.filter{ $0.squad == g.match.home }
+                        let awayGoals = goals.filter{ $0.squad == g.match.away }
+                        tweet += String(format: " %d-%d", homeGoals.count, awayGoals.count)
+                    }
+                }
+                
+                if let squad = g.squad {
+                    if squad.isBlijdorp() {
+                        if let scorer = g.scorer {
+                            tweet += String(format: ", doelpunt %@", scorer.name)
+                        }
+                        
+                        if let comment = g.comment {
+                            tweet += String(format: " (%@)", comment)
+                        }
+
+                        if let assist = g.assist {
+                            tweet += String(format: ", assist %@", assist.name)
+                        }
+                    } else {
+                        tweet += String(format: " doelpunt %@", squad.club.name)
+                        
+                        if let comment = g.comment {
+                            tweet += String(format: " (%@)", comment)
+                        }
+                    }
+                }
+
+                return tweet
+            }
         }
         
         return nil

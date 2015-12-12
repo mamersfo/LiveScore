@@ -54,10 +54,10 @@ class DetailViewController: UIViewController {
                     self.scoreLabel.text = String(format: "%d - %d", home.count, away.count)
                     
                     homeScores.text = home.map{
-                        String(format: "%@ %d\"", $0.scorer!, $0.minutes) }.joinWithSeparator("\n")
+                        String(format: "%@ %d\"", $0.scorer ?? "N.N", $0.minutes) }.joinWithSeparator("\n")
                     
                     awayScores.text = away.map{
-                        String(format: "%d\" %@", $0.minutes, $0.scorer!) }.joinWithSeparator("\n")
+                        String(format: "%d\" %@", $0.minutes, $0.scorer ?? "N.N") }.joinWithSeparator("\n")
                 }
             }
         }
@@ -75,11 +75,13 @@ class DetailViewController: UIViewController {
         if let started = (UIApplication.sharedApplication().delegate as? AppDelegate)!.timerStart {
             if let button = self.startStopButton {
                 let total = abs(started.timeIntervalSinceNow)
-                let minutes = Int(total / 60.0)
-                let title = String(format: "%d\"", minutes)
+                let minutes = Int(floor(total / 60.0))
+                let seconds = Int(total % 60.0)
+                let title = String(format: "%d:%02d", minutes, seconds)
                 button.setTitle(title, forState: .Normal)
                 
-                if ( minutes == 8 || minutes == 16 ) {
+                if ( ( minutes == 8 && seconds == 20 ) || ( minutes == 16 && seconds == 40 ) ) {
+                    // time to substitute
                     AudioServicesPlaySystemSound(1304)
                 }
             }
@@ -103,9 +105,9 @@ class DetailViewController: UIViewController {
     }
     
     func startTimer() {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "tick", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil, repeats: true)
         
-        self.startStopButton.setTitle("0\"", forState:  .Normal)
+        self.startStopButton.setTitle("0:00", forState:  .Normal)
         self.startStopButton.backgroundColor = self.view.tintColor
         self.startStopButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.halfControl.enabled = false
@@ -134,6 +136,7 @@ class DetailViewController: UIViewController {
                     appDelegate.match = match
                     appDelegate.half = self.halfControl.selectedSegmentIndex + 1
                     appDelegate.timerStart = NSDate()
+
                     self.startTimer()
 
                     if ( appDelegate.half == 1 ) {

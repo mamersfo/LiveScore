@@ -26,18 +26,21 @@ extension Goal {
     }
     
     override var description: String {
-        var desc = String(format: "%d\"", self.minutes)
+        var desc = String(format: "%d'", self.minutes)
         
         if let squad = self.squad {
             if squad.isBlijdorp() {
                 if let scorer = self.scorer {
                     desc += String(format: " %@", scorer.name)
+                    if let assist = self.assist {
+                        desc += String(format: ", assist: %@", assist.name)
+                    }
                 }
-                if let assist = self.assist {
-                    desc += String(format: ", assist %@", assist.name)
-                }
-            } else {
-                desc += String(format: " %@", squad.club)
+             } else {
+                desc += String(format: " %@", squad.club.name)
+            }
+            if let comment = self.comment {
+                desc += String(format: " (%@)", comment)
             }
         }
         
