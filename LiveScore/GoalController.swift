@@ -110,41 +110,39 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func tweetText() -> String? {
         if let g = self.goal {
-            if let hashTag = g.match.hashTag {
-                var tweet = String(format: " %@ %d'", hashTag, g.minutes)
-            
-                if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-                    if let goals = Goal.findByMatch(appDelegate.managedObjectContext, match: g.match) {
-                        let homeGoals = goals.filter{ $0.squad == g.match.home }
-                        let awayGoals = goals.filter{ $0.squad == g.match.away }
-                        tweet += String(format: " %d-%d", homeGoals.count, awayGoals.count)
-                    }
+            var tweet = String(format: "%d'", g.minutes)
+        
+            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                if let goals = Goal.findByMatch(appDelegate.managedObjectContext, match: g.match) {
+                    let homeGoals = goals.filter{ $0.squad == g.match.home }
+                    let awayGoals = goals.filter{ $0.squad == g.match.away }
+                    tweet += String(format: " %d-%d", homeGoals.count, awayGoals.count)
                 }
-                
-                if let squad = g.squad {
-                    if squad.isBlijdorp() {
-                        if let scorer = g.scorer {
-                            tweet += String(format: ", doelpunt %@", scorer.name)
-                        }
-                        
-                        if let comment = g.comment {
-                            tweet += String(format: " (%@)", comment)
-                        }
-
-                        if let assist = g.assist {
-                            tweet += String(format: ", assist %@", assist.name)
-                        }
-                    } else {
-                        tweet += String(format: " doelpunt %@", squad.club.name)
-                        
-                        if let comment = g.comment {
-                            tweet += String(format: " (%@)", comment)
-                        }
-                    }
-                }
-
-                return tweet
             }
+            
+            if let squad = g.squad {
+                if squad.isBlijdorp() {
+                    if let scorer = g.scorer {
+                        tweet += String(format: ", doelpunt %@", scorer.name)
+                    }
+                    
+                    if let comment = g.comment {
+                        tweet += String(format: " (%@)", comment)
+                    }
+
+                    if let assist = g.assist {
+                        tweet += String(format: ", assist %@", assist.name)
+                    }
+                } else {
+                    tweet += String(format: " doelpunt %@", squad.club.name)
+                    
+                    if let comment = g.comment {
+                        tweet += String(format: " (%@)", comment)
+                    }
+                }
+            }
+
+            return tweet
         }
         
         return nil
@@ -182,6 +180,8 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                     tweetSheet.setInitialText(text)
                     self.presentViewController(tweetSheet, animated: true, completion: nil)
                 }
+            } else {
+                print("Unable to tweet: ", text)
             }
         }
     }

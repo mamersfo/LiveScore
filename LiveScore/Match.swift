@@ -55,8 +55,4 @@ extension Match {
         goal.match = self
         self.goals.addObject(goal)
     }
-    
-    var hashTag: String? {
-        return "#" + (self.home.club.code + self.away.club.code).lowercaseString
-    }    
 }

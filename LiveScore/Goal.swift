@@ -61,6 +61,6 @@ extension Goal {
     }
     
     var minutes: Int {
-        return ((self.half - 1) * 25) + Int(self.seconds / 60 )
+        return ((self.half - 1) * 25) + Int(ceil(Double(self.seconds) / 60.0 ))
     }    
 }

@@ -54,10 +54,10 @@ class DetailViewController: UIViewController {
                     self.scoreLabel.text = String(format: "%d - %d", home.count, away.count)
                     
                     homeScores.text = home.map{
-                        String(format: "%@ %d\"", $0.scorer ?? "N.N", $0.minutes) }.joinWithSeparator("\n")
+                        String(format: "%@ %d'", $0.scorer ?? "N.N", $0.minutes) }.joinWithSeparator("\n")
                     
                     awayScores.text = away.map{
-                        String(format: "%d\" %@", $0.minutes, $0.scorer ?? "N.N") }.joinWithSeparator("\n")
+                        String(format: "%d' %@", $0.minutes, $0.scorer ?? "N.N") }.joinWithSeparator("\n")
                 }
             }
         }
@@ -140,9 +140,9 @@ class DetailViewController: UIViewController {
                     self.startTimer()
 
                     if ( appDelegate.half == 1 ) {
-                        self.tweet(String(format: "De wedstrijd %@ is begonnen! %@", match.description, match.hashTag!), image: nil)
+                        self.tweet(String(format: "De wedstrijd %@ is begonnen!", match.description), image: nil)
                     } else if ( appDelegate.half == 2 ) {
-                        self.tweet(String(format: "De tweede helft is begonnen %@", match.description, match.hashTag!), image: nil)
+                        self.tweet(String(format: "De tweede helft is begonnen", match.description), image: nil)
                     }
                 }
             } else {
@@ -152,7 +152,7 @@ class DetailViewController: UIViewController {
                 
                 if let match = self.detailItem as? Match {
                     if (appDelegate.half == 2 ) {
-                        self.tweet(String(format: "De wedstrijd %@ is afgelopen %@", match.description, match.hashTag!), image: appDelegate.screenShot())
+                        self.tweet(String(format: "De wedstrijd %@ is afgelopen", match.description), image: appDelegate.screenShot())
                     }
                 }
             }
@@ -163,7 +163,7 @@ class DetailViewController: UIViewController {
         if let match = self.detailItem as? Match {
             if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
                 if ( sender.selectedSegmentIndex == 2 ) {
-                    self.tweet(String(format: "De wedstrijd %@ is afgelopen %@", match.description, match.hashTag!), image: appDelegate.screenShot())
+                    self.tweet(String(format: "De wedstrijd %@ is afgelopen", match.description), image: appDelegate.screenShot())
                 }
             }
         }
