@@ -100,7 +100,7 @@ class DetailViewController: UIViewController {
                 self.presentViewController(tweetSheet, animated: true, completion: nil)
             }
         } else {
-            print("Unable to tweet: ", text)
+            print("Unable to tweet: \(text)")
         }
     }
     

@@ -181,7 +181,7 @@ class GoalController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                     self.presentViewController(tweetSheet, animated: true, completion: nil)
                 }
             } else {
-                print("Unable to tweet: ", text)
+                print("Unable to tweet: \(text)")
             }
         }
     }
